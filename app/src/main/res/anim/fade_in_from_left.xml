@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <translate
+        android:fromXDelta="-5%p"
+        android:toXDelta="0%p"
+        android:duration="@integer/fade_in_from_left_duration"/>
+
+<!--
+    <rotate
+    android:fromDegrees="360"
+    android:toDegrees="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:fillEnabled="true"
+    android:fillBefore="true"
+    android:fillAfter="true"
+    android:interpolator="@android:interpolator/decelerate_quint"
+    android:duration="@integer/fade_in_from_left_duration" /> -->
+
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="@integer/fade_in_from_left_duration" />
+
+
+</set>

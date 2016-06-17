@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Stud-Info</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_main_label">Stud-Info</string>
+    <string name="btn_label_Add_Student">ADD STUDENT</string>
+    <string name="btn_label_Show_Details">SHOW DETAILS</string>
+    <string name="btn_label_Update_Details">UPDATE INFO</string>
+    <string name="tv_Name">NAME</string>
+    <string name="tv_enrollNO">ENROL. NO</string>
+    <string name="tv_Phone_Np">PHONE NO</string>
+    <string name="add">ADD</string>
+    <string name="cancel">CANCEL</string>
+    <string name="updateForm_Title">UPDATE INFO</string>
+    <string name="tv_Id">ID</string>
+    <string name="tv_Update">UPDATE</string>
+    <string name="btnDeleteText">DELETE DETAILS</string>
+    <string name="deleteStudentTitle">DELETE STUDENT</string>
+    <string name="btnLabel_delete">DELETE</string>
+    <string name="NoteDeleteStudent">Don\'t Left Field Empty</string>
+    <string name="AddStudentFormTitle">ADD STUDENT</string>
+    <string name="appTitle">Stud-Info</string>
+    <integer name="fade_in_duration">5000</integer>
+    <integer name="fade_in_from_left_duration">5000</integer>
+
+</resources>
