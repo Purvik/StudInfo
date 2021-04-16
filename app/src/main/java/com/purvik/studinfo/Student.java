@@ -1,7 +1,6 @@
 package com.purvik.studinfo;
 
 /**
- * Created by 3537 on 06-11-2015.
  * Purvik Rana - Student Main Class
  * Attributes: id, enroll_no, name, phone_number;
  * Constructor: empty, all parameter, three parameter

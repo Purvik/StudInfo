@@ -2,9 +2,8 @@ package com.purvik.studinfo;
 
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ArrowKeyMovementMethod;
 import android.view.Menu;
@@ -23,10 +22,8 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
     Button btnAddStudent, btnUpdateInfo, btnShowDetails, btnDeleteInfo;
     TextView tvStdInfo;
     private String TAG = "StudInfo";
-    SQLiteDatabase dtb;
     int btnBackPressCounter = 0;
     DBHandler db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
         btnAddStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AddStudentDialog dialog = new AddStudentDialog();
                 dialog.show(getFragmentManager(), TAG);
             }
@@ -134,80 +130,42 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
         EditText entPhnNo = (EditText) dialog.getDialog().findViewById(R.id.edtPhoneNo);
         String  phnNo = entPhnNo.getText().toString();
 
-
-
         boolean check_enrollNo = checkEnrollNo(enrollNo);
-
         boolean check_name = checkName(name);
-
         boolean check_phnNo = checkPhoneNo(phnNo);
 
-        if(check_enrollNo == false || check_name == false || check_phnNo == false){
-
+        if(!check_enrollNo || !check_name || !check_phnNo){
             Toast.makeText(getApplicationContext(),"Enter Data Again.. :P",Toast.LENGTH_LONG).show();
         }else{
-
             db.addNewStudent(new Student(int_enrollNo,name,phnNo));
-
             Toast.makeText(getApplicationContext(),"Student Added to the List.. O_o",Toast.LENGTH_LONG).show();
         }
-
-
-
-        Toast.makeText(getApplicationContext(),"\nNo :" + enrollNo + "\nName: " + name + "\nPhone No:" + phnNo,Toast.LENGTH_LONG).show();
-
-
-
     }
 
     //Check Id Number
-    public boolean checkIdno(String Id_No){
-
-        if(Id_No == ""){
-            return false;
-        }else{
-            return true;
-        }
-
+    public boolean checkIdNo(String Id_No){
+        return !Id_No.equals("");
     }
 
     //Check Enrollment number
     public boolean checkEnrollNo(String enr_No){
-
-        if(enr_No == "" || enr_No.length() != 3){
-
-            return false;
-        }else{
-            return true;
-        }
-
+        return !enr_No.equals("") && enr_No.length() == 3;
     }
 
     //Check Name
     public boolean checkName(String stdName){
-
-        if(stdName == ""){
-            return false;
-        }else{
-            return true;
-        }
+        return !stdName.equals("");
     }
 
     //Check Phone Number
     public boolean checkPhoneNo(String phn_No){
 
-        if(phn_No == "" || phn_No.length() != 10){
-
-            return false;
-        }else{
-            return true;
-        }
+        return !phn_No.equals("") && phn_No.length() == 10;
 
     }
 
     @Override
     public void onUpdateButtonClick(DialogFragment dialog) {
-
 
 //		Get ID
         EditText entId = (EditText) dialog.getDialog().findViewById(R.id.edt_UpdateId);
@@ -228,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
         EditText entPhnNo = (EditText) dialog.getDialog().findViewById(R.id.edt_UpdatePhoneNo);
         String  phnNo = entPhnNo.getText().toString();
 
-        boolean check_idNo = checkIdno(idNo);
+        boolean check_idNo = checkIdNo(idNo);
 
         boolean check_enrollNo = checkEnrollNo(enrollNo);
 
@@ -236,19 +194,19 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
 
         boolean check_phnNo = checkPhoneNo(phnNo);
 
-        if(check_idNo == false  || check_enrollNo == false || check_name == false || check_phnNo == false){
+        if(!check_idNo || !check_enrollNo || !check_name || !check_phnNo){
 
             Toast.makeText(getApplicationContext(),"Enter Data Again.. :P",Toast.LENGTH_LONG).show();
         }else{
 
             boolean updateCheck = db.updateStudentInfo(int_idNo, int_enrollNo, name, phnNo);
 
-            if(updateCheck == true){
+            if(updateCheck){
 
-            Toast.makeText(getApplicationContext(),"Student Added to the List.. O_o",Toast.LENGTH_LONG).show();}
+            Toast.makeText(getApplicationContext(),"Student Details update in the List.. O_o",Toast.LENGTH_LONG).show();}
             else{
 
-                Toast.makeText(getApplicationContext(),"Details Updation Failes.. :(",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Updating student record gets failed.. :(",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -266,9 +224,9 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
         String idNo = entId.getText().toString();
         int int_idNo =Integer.parseInt(entId.getText().toString());
 
-        boolean check_idNo = checkIdno(idNo);
+        boolean check_idNo = checkIdNo(idNo);
 
-        if(check_idNo == false){
+        if(!check_idNo){
 
             Toast.makeText(getApplicationContext(),"Enter Proper ID again..! :)",Toast.LENGTH_LONG).show();
 
@@ -276,12 +234,12 @@ public class MainActivity extends AppCompatActivity implements AddStudentDialog.
 
             boolean deleCheck = db.deleteStudent(int_idNo);
 
-            if(deleCheck == true){
+            if(deleCheck){
 
                 Toast.makeText(getApplicationContext(),"Student Deleted Successfully :)",Toast.LENGTH_LONG).show();}
             else{
 
-                Toast.makeText(getApplicationContext(),"Stuent Deletion Fails.. :(",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Deleting student record gets failed.. :(",Toast.LENGTH_LONG).show();
             }
         }
 

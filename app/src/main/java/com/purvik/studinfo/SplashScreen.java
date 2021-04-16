@@ -10,9 +10,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by 3537 on 30-11-2015.
- */
 public class SplashScreen extends Activity {
 
     private static final int SPLASH_DURATION = 3000; //3 second

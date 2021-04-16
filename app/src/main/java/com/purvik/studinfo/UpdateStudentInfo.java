@@ -9,9 +9,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
-/**
- * Created by 3537 on 07-11-2015.
- */
 public class UpdateStudentInfo extends DialogFragment {
 
     ////interface to handle the Events

@@ -9,9 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 3537 on 06-11-2015.
- */
 public class DBHandler extends SQLiteOpenHelper {
 
     // All Static variables
@@ -30,8 +27,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_PHONE_NO = "phone_number";
 
-    public DBHandler(Context contex) {
-        super(contex, DATABASE_NAME, null, DATABASE_VERSION);
+    public DBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     //creating Tables
@@ -64,15 +61,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Adding new Student Information
     void addNewStudent(Student newStud) {
-
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
         values.put(KEY_ENROLL_NO, newStud.get_enroll_no());
         values.put(KEY_NAME, newStud.get_name());
         values.put(KEY_PHONE_NO, newStud.get_phone_number());
-
 
         // Inserting Row
         db.insert(TABLE_STUDENT_DETAIL, null, values);
@@ -84,29 +78,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues args = new ContentValues();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ENROLL_NO, updEnrolNo);
+        values.put(KEY_NAME, updName);
+        values.put(KEY_PHONE_NO, updPhoneNo);
 
-        args.put(KEY_ENROLL_NO, updEnrolNo);
-        args.put(KEY_NAME, updName);
-        args.put(KEY_PHONE_NO, updPhoneNo);
-
-        return db.update(TABLE_STUDENT_DETAIL, args, KEY_ID + "=" + updId, null) > 0;
+        return db.update(TABLE_STUDENT_DETAIL, values, KEY_ID + "=" + updId, null) > 0;
     }
 
 
     public boolean deleteStudent(int delID){
-
         SQLiteDatabase db = this.getWritableDatabase();
-
         return db.delete(TABLE_STUDENT_DETAIL, KEY_ID + "=" + delID, null) > 0;
-
     }
-
-
 
     // Getting All Students
     public List<Student> getAllStudentList() {
-
 
         List<Student> studentList = new ArrayList<Student>();
 
@@ -119,15 +106,14 @@ public class DBHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-
-                Student stdnt = new Student();
-                stdnt.set_id(Integer.parseInt(cursor.getString(0)));
-                stdnt.set_enroll_no(Integer.parseInt(cursor.getString(1)));
-                stdnt.set_name(cursor.getString(2));
-                stdnt.set_phone_number(cursor.getString(3));
+                Student student = new Student();
+                student.set_id(Integer.parseInt(cursor.getString(0)));
+                student.set_enroll_no(Integer.parseInt(cursor.getString(1)));
+                student.set_name(cursor.getString(2));
+                student.set_phone_number(cursor.getString(3));
 
                 // Adding contact to list
-                studentList.add(stdnt);
+                studentList.add(student);
 
             } while (cursor.moveToNext());
         }

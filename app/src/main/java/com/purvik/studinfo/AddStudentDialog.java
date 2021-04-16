@@ -9,9 +9,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
-/**
- * Created by 3537 on 06-11-2015.
- */
 public class AddStudentDialog extends DialogFragment {
 
     ////interface to handle the Events
@@ -22,18 +19,18 @@ public class AddStudentDialog extends DialogFragment {
 
     }
 
-    //create an Instance to deliever the action
+    //create an Instance to deliver the action
     AddStudentDialogListener addStudentListener;
     Context context;
 
-    // Override the Fragment.onAttach() method to instantiate the SetPasswordDialogListener
+    // Override the Fragment.onAttach() method to instantiate the SetAddStudentListener
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
         // Verify that the host activity implements the callback interface
         try {
-            // Instantiate the SetPasswordDialogListener so we can send events to the host
+            // Instantiate the SetAddStudentListener so we can send events to the host
             addStudentListener = (AddStudentDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
@@ -46,16 +43,13 @@ public class AddStudentDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.student_form, null))
-
                 // Add action buttons
                 .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
                     @Override
